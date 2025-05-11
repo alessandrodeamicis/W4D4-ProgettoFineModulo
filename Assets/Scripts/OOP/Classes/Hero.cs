@@ -24,12 +24,12 @@ namespace Classes
 
         public Hero(string name, int hp, Stats baseStats, ELEMENT resistance, ELEMENT weakness, Weapon weapon)
         {
-            this.name = name;
-            this.hp = hp;
-            this.baseStats = baseStats;
-            this.resistance = resistance;
-            this.weakness = weakness;
-            this.weapon = weapon;
+            SetName(name);
+            SetHp(hp);
+            SetStats(baseStats);
+            SetResistance(resistance);
+            SetWeakness(weakness);
+            SetWeapon(weapon);
         }
 
         public string GetName() { return name; }

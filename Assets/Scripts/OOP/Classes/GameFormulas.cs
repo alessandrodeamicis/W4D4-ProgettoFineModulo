@@ -23,7 +23,7 @@ namespace Classes
         public static bool HasHit(Stats attacker, Stats defender)
         {
             int hitChance = attacker.aim - defender.eva;
-            int randomNumber = Random.Range(0, 99);
+            int randomNumber = Random.Range(0, 100);
             if (randomNumber > hitChance)
             {
                 Debug.Log("MISS");
@@ -36,7 +36,7 @@ namespace Classes
         }
         public static bool IsCrit(int critValue)
         {
-            int randomNumber = Random.Range(0, 99);
+            int randomNumber = Random.Range(0, 100);
             if (randomNumber < critValue)
             {
                 Debug.Log("CRIT");
@@ -54,10 +54,11 @@ namespace Classes
 
             int defenderDefense = attacker.GetWeapon().GetDmgType() == DAMAGE_TYPE.PHYSICAL ? defenderStats.def : defenderStats.res;
             int baseDamage = attackerStats.atk - defenderDefense;
-            int modifiedDamage = (int)(EvaluateElementalModifier(attacker.GetWeapon().GetElem(), defender) * baseDamage);
+            int modifiedDamage = Mathf.RoundToInt(EvaluateElementalModifier(attacker.GetWeapon().GetElem(), defender) * baseDamage);
             modifiedDamage = IsCrit(modifiedDamage) ? modifiedDamage * 2 : modifiedDamage;
 
             if (modifiedDamage < 0) return modifiedDamage;
+
             return modifiedDamage;
         }
         public static Stats GetStatsWithWeapon(Hero hero)
